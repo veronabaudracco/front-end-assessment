@@ -39,10 +39,10 @@ In this challenge, you will create a simple Memory Card Game using React. The ga
   - Use different styles for the card front and back, and for matched pairs.
 
 - Personalization
- - Add at least one additional feature to this game unique to you. This can be anything you choose and there is no wrong answer. You can use this feature to showcase a particular skill or something you find interesting, challenging, or helpful in the React language.
+  - Add at least one additional feature to this game unique to you. This can be anything you choose and there is no wrong answer. You can use this feature to showcase a particular skill or something you find interesting, challenging, or helpful in the React language.
 
 - Submission
- - After you have completed the challenge, please send a link to your repo with your solution prior to the interview.  You will be asked to present your solution during the interview and it will be reviewed by our Engineering Managers.
+  - After you have completed the challenge, please send a link to your repo with your solution prior to the interview.  You will be asked to present your solution during the interview and it will be reviewed by our Engineering Managers.
 
 - Notes
   - Feel free to change, or add to, the provided components as needed
