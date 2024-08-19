@@ -1,19 +1,6 @@
 # Overview
 We would like you to answer a few front-end questions and create a simple game using React. We have provided a basic React application as a starting point. Use this challenge to showcase the depth of your understanding of React.  After you receive this coding challenge we will schedule an interview a few days later where you will be asked a few technical questions and then will have 15-20 minutes to present your solution by sharing your screen and walking through your design process as well as an overview of your code.  These questions and this presentation will be recorded and reviewed by our Engineering managers to determine the next steps in the interview process.
 
-## Code Questions
-
-- What is props spreading and why should you avoid props spreading?
-
-
-- What are React hooks and why might you use React lifecycle methods instead of them?
-
-
-- When should you use a third-party library and what criteria should you use to evaluate them?
-
-
-- If you could, what would you change or add to the React or Typescript frameworks?
-
 ## React Coding Challenge: Memory Card GameOverview
 In this challenge, you will create a simple Memory Card Game using React. The game will involve flipping cards to find matching pairs. This project should take a few hours to complete and will test your skills in working with React components, state management, event handling, and CSS styling.
 
