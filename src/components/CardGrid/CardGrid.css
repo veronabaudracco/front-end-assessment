@@ -1,16 +1,29 @@
-/* CardGrid.css */
 .card-grid {
   background-color: #2e2e3a;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 10px;
-  width: 60%;
+  gap: 20px;
+  max-width: 600px;
+  width: 100%;
   margin: 0 auto;
+  padding: 20px;
+  overflow: hidden;
 }
 
-body {
-  margin: 0;
-  font-family: "Lora", serif;
-  background-color: #2e2e3a;
-  color: #ece3c2;
+@media (max-width: 768px) {
+  .card-grid {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 15px;
+    max-width: 600px;
+    padding: 15px;
+  }
+}
+
+@media (max-width: 480px) {
+  .card-grid {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+    max-width: 400px;
+    padding: 10px;
+  }
 }

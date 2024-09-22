@@ -1,14 +1,9 @@
 .card {
   position: relative;
-  width: 200px;
-  height: 200px;
-  perspective: 1000px;
+  width: 140px;
+  height: 140px;
   cursor: pointer;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-.card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
 }
 
 .card-inner {
@@ -40,4 +35,37 @@
   height: 100%;
   object-fit: cover;
   border-radius: 10px;
+}
+
+.card.matched {
+  animation: bounce 0.5s forwards;
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+@keyframes bounce {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+/* Responsive card styles */
+@media (max-width: 768px) {
+  .card {
+    width: 120px;
+    height: 120px;
+  }
+}
+
+@media (max-width: 480px) {
+  .card {
+    width: 80px;
+    height: 80px;
+  }
 }

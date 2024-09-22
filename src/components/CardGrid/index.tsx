@@ -1,11 +1,6 @@
-import { useCallback } from "react";
+import { useCallback, useEffect } from "react";
 import Card, { MemoryCard } from "../Card";
 import "./CardGrid.css";
-
-interface CardGridProps {
-  cards: MemoryCard[];
-  setCards: React.Dispatch<React.SetStateAction<MemoryCard[]>>;
-}
 
 const flipCard = (cards: MemoryCard[], id: number, flippedState: boolean) => {
   return cards.map((card) =>
@@ -17,14 +12,14 @@ const getFlippedCards = (cards: MemoryCard[]) => {
   return cards.filter((card) => card.flipped && !card.matched);
 };
 
-const checkForMatch = (firstCard: MemoryCard, secondCard: MemoryCard) => {
+const checkMatch = (firstCard: MemoryCard, secondCard: MemoryCard) => {
   return firstCard.image.alt === secondCard.image.alt;
 };
 
 const resetNonMatchingCards = (
   firstCard: MemoryCard,
   secondCard: MemoryCard,
-  setCards: React.Dispatch<React.SetStateAction<MemoryCard[]>>
+  setCards: SetCards
 ) => {
   setTimeout(() => {
     setCards((prevCards) => {
@@ -34,7 +29,30 @@ const resetNonMatchingCards = (
   }, 800);
 };
 
-const CardGrid = ({ cards, setCards }: CardGridProps) => {
+export type SetCards = React.Dispatch<React.SetStateAction<MemoryCard[]>>;
+export type SetMoves = React.Dispatch<React.SetStateAction<number>>;
+
+interface CardGridProps {
+  cards: MemoryCard[];
+  setCards: SetCards;
+  moves: number;
+  setMoves: SetMoves;
+  handleStartGame: () => void;
+}
+
+const CardGrid = ({
+  cards,
+  setCards,
+  moves,
+  setMoves,
+  handleStartGame,
+}: CardGridProps) => {
+  useEffect(() => {
+    if (moves === 1) {
+      handleStartGame();
+    }
+  }, [moves, handleStartGame]);
+
   const handleFlip = useCallback(
     (id: number) => {
       const flippedCards = getFlippedCards(cards);
@@ -43,13 +61,12 @@ const CardGrid = ({ cards, setCards }: CardGridProps) => {
 
       setCards((prevCards) => {
         const updatedCards = flipCard(prevCards, id, true);
-
         const updatedFlipped = getFlippedCards(updatedCards);
 
         if (updatedFlipped.length === 2) {
           const [firstCard, secondCard] = updatedFlipped;
 
-          if (checkForMatch(firstCard, secondCard)) {
+          if (checkMatch(firstCard, secondCard)) {
             return updatedCards.map((card) =>
               card.id === firstCard.id || card.id === secondCard.id
                 ? { ...card, matched: true }
@@ -62,8 +79,10 @@ const CardGrid = ({ cards, setCards }: CardGridProps) => {
 
         return updatedCards;
       });
+
+      setMoves((prevMoves) => prevMoves + 1);
     },
-    [cards, setCards]
+    [cards, setCards, setMoves]
   );
 
   return (
@@ -74,6 +93,7 @@ const CardGrid = ({ cards, setCards }: CardGridProps) => {
           {...card}
           onClick={() => handleFlip(card.id)}
           isFlipped={card.flipped}
+          isMatched={card.matched}
         />
       ))}
     </div>
