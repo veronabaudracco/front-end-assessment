@@ -7,6 +7,7 @@ import sansa from "./assets/sansa.png";
 import tyrion from "./assets/tyrion.png";
 import walker from "./assets/walker.png";
 import { MemoryCard } from "./components/card";
+import { SetCards } from "./components/cardGrid";
 
 export interface Image {
   src: string;
@@ -89,4 +90,51 @@ const getCardsData = () => {
   return shuffledCards;
 };
 
-export default getCardsData;
+/**
+ * Flips a card based on the id and the flipped state.
+ * @param cards
+ * @param id
+ * @param flippedState
+ * @returns MemoryCard[]
+ */
+const flipCard = (cards: MemoryCard[], id: number, flippedState: boolean) => {
+  return cards.map((card) =>
+    card.id === id ? { ...card, flipped: flippedState } : card
+  );
+};
+
+/**
+ * Returns the array of cards that are currently flipped and not matched.
+ * @param cards
+ * @returns MemoryCard[]
+ */
+const getFlippedCards = (cards: MemoryCard[]) => {
+  return cards.filter((card) => card.flipped && !card.matched);
+};
+
+/**
+ * Resets the non-matching cards to their original state.
+ * @param firstCard
+ * @param secondCard
+ * @param setCards
+ */
+const resetNonMatchingCards = (
+  firstCard: MemoryCard,
+  secondCard: MemoryCard,
+  setCards: SetCards
+) => {
+  setTimeout(() => {
+    setCards((prevCards) => {
+      const updatedCards = flipCard(prevCards, firstCard.id, false);
+      return flipCard(updatedCards, secondCard.id, false);
+    });
+  }, 800);
+};
+
+export {
+  getCardsData,
+  flipCard,
+  getFlippedCards,
+  resetNonMatchingCards,
+  shuffle,
+};

@@ -3,13 +3,13 @@ import "./App.css";
 import { MemoryCard } from "./components/card";
 import GameBoard from "./components/gameBoard";
 import Header from "./components/header";
-import getCardsData from "./utils";
+import { getCardsData } from "./utils";
 
 const App = () => {
   const [memoryCards, setMemoryCards] = useState<MemoryCard[]>([]);
   const [moves, setMoves] = useState(0);
   const [timer, setTimer] = useState(0);
-  const [isActive, setIsActive] = useState(false);
+  const [hasStarted, setHasStarted] = useState(false);
   const [hasWon, setHasWon] = useState(false);
 
   const initialCards = getCardsData().map((card) => ({
@@ -25,32 +25,34 @@ const App = () => {
   useEffect(() => {
     let interval: number;
 
-    if (isActive) {
+    // Start the timer if the game has started
+    if (hasStarted) {
       interval = setInterval(() => {
         setTimer((prev) => prev + 1);
       }, 1000);
     }
 
     return () => clearInterval(interval);
-  }, [isActive]);
+  }, [hasStarted]);
 
   useEffect(() => {
-    if (isActive && memoryCards.every((card) => card.matched)) {
+    // The user has won if all the cards are matched and the game has started
+    if (hasStarted && memoryCards.every((card) => card.matched)) {
       setHasWon(true);
-      setIsActive(false);
+      setHasStarted(false);
     }
-  }, [memoryCards, isActive]);
+  }, [memoryCards, hasStarted]);
 
   const handleResetGame = () => {
     setMemoryCards(initialCards);
     setMoves(0);
     setTimer(0);
-    setIsActive(false);
+    setHasStarted(false);
     setHasWon(false);
   };
 
   const handleStartGame = () => {
-    setIsActive(true);
+    setHasStarted(true);
   };
 
   return (
