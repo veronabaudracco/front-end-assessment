@@ -1,12 +1,16 @@
 import { useEffect, useState } from "react";
 import "./App.css";
-import CardGrid from "./components/CardGrid/CardGrid";
-import Header from "./components/Header";
 import { MemoryCard } from "./components/Card";
+import GameBoard from "./components/GameBoard";
+import Header from "./components/Header";
 import getCardsData from "./utils";
 
 const App = () => {
-  const [cards, setCards] = useState<MemoryCard[]>([]);
+  const [memoryCards, setMemoryCards] = useState<MemoryCard[]>([]);
+  const [moves, setMoves] = useState(0);
+  const [timer, setTimer] = useState(0);
+  const [isActive, setIsActive] = useState(false);
+  const [hasWon, setHasWon] = useState(false);
 
   const initialCards = getCardsData().map((card) => ({
     ...card,
@@ -15,17 +19,52 @@ const App = () => {
   }));
 
   useEffect(() => {
-    setCards(initialCards);
+    setMemoryCards(initialCards);
   }, []);
 
+  useEffect(() => {
+    let interval: number;
+
+    if (isActive) {
+      interval = setInterval(() => {
+        setTimer((prev) => prev + 1);
+      }, 1000);
+    }
+
+    return () => clearInterval(interval);
+  }, [isActive]);
+
+  useEffect(() => {
+    if (isActive && memoryCards.every((card) => card.matched)) {
+      setHasWon(true);
+      setIsActive(false);
+    }
+  }, [memoryCards, isActive]);
+
   const handleResetGame = () => {
-    setCards(initialCards);
+    setMemoryCards(initialCards);
+    setMoves(0);
+    setTimer(0);
+    setIsActive(false);
+    setHasWon(false);
+  };
+
+  const handleStartGame = () => {
+    setIsActive(true);
   };
 
   return (
     <>
       <Header onReset={handleResetGame} />
-      <CardGrid cards={cards} setCards={setCards} />
+      <GameBoard
+        cards={memoryCards}
+        setCards={setMemoryCards}
+        moves={moves}
+        setMoves={setMoves}
+        timer={timer}
+        handleStartGame={handleStartGame}
+        hasWon={hasWon}
+      />
     </>
   );
 };
