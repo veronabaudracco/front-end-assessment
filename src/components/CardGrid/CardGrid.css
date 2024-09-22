@@ -1,0 +1,16 @@
+/* CardGrid.css */
+.card-grid {
+  background-color: #2e2e3a;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+  width: 60%;
+  margin: 0 auto;
+}
+
+body {
+  margin: 0;
+  font-family: "Lora", serif;
+  background-color: #2e2e3a;
+  color: #ece3c2;
+}
