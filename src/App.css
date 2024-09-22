@@ -6,6 +6,6 @@
 body {
   margin: 0;
   font-family: "Lora", serif;
-  background-color: #2e2e3a;
-  color: #ece3c2;
+  background-image: url("../src/assets/background.png");
+  background-repeat: repeat;
 }

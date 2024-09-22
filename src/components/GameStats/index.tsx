@@ -9,7 +9,7 @@ const Stat = ({ title, value }: StatProps) => {
   return (
     <div className="container">
       <h2 className="detail">{title}:</h2>
-      <p>{value}</p>
+      <p className="detail">{value}</p>
     </div>
   );
 };

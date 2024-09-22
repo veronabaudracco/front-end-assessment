@@ -10,23 +10,21 @@
   font-size: 2rem;
   margin: 0;
   color: #ece3c2;
-  text-transform: uppercase;
 }
 
 .header .reset-button {
-  background-color: #a66355;
+  background-color: #ece3c2;
   border: none;
   border-radius: 5px;
   padding: 8px 20px;
   font-size: 1rem;
-  color: white;
   cursor: pointer;
   transition: background-color 0.3s ease;
   text-transform: uppercase;
 }
 
 .header .reset-button:hover {
-  background-color: #7b4c3e;
+  background-color: #a65e49;
 }
 
 @media (max-width: 768px) {

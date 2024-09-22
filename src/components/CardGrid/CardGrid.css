@@ -1,5 +1,4 @@
 .card-grid {
-  background-color: #2e2e3a;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 20px;
