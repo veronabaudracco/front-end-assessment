@@ -1,7 +1,7 @@
 import "./header.css";
 
 interface HeaderProps {
-  onReset?: () => void;
+  onReset: () => void;
 }
 
 const Header = ({ onReset }: HeaderProps) => {
@@ -10,11 +10,9 @@ const Header = ({ onReset }: HeaderProps) => {
       <div className="logo">
         <h1>Match of Thrones</h1>
       </div>
-      {onReset ? (
-        <button className="reset-button" onClick={onReset}>
-          Reset Game
-        </button>
-      ) : null}
+      <button className="reset-button" onClick={onReset}>
+        Reset Game
+      </button>
     </header>
   );
 };

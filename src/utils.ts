@@ -6,7 +6,7 @@ import jon from "./assets/jon.png";
 import sansa from "./assets/sansa.png";
 import tyrion from "./assets/tyrion.png";
 import walker from "./assets/walker.png";
-import { MemoryCard } from "./components/Card";
+import { MemoryCard } from "./components/card";
 
 export interface Image {
   src: string;
@@ -51,6 +51,11 @@ export const images: Image[] = [
   },
 ];
 
+/**
+ * Shuffle the array of cards.
+ * @param array {MemoryCard[]} - Array of MemoryCard objects
+ * @returns {MemoryCard[]} - Shuffled array of MemoryCard objects
+ */
 const shuffle = (array: MemoryCard[]) => {
   for (let i = array.length - 1; i > 0; i--) {
     const j = Math.floor(Math.random() * (i + 1));
@@ -59,6 +64,10 @@ const shuffle = (array: MemoryCard[]) => {
   return array;
 };
 
+/**
+ * Generate an array of MemoryCard objects.
+ * @returns {MemoryCard[]} - Array of MemoryCard objects
+ */
 const getCardsData = () => {
   const cards: MemoryCard[] = [];
 

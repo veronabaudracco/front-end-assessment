@@ -7,7 +7,7 @@ interface StatProps {
 
 const Stat = ({ title, value }: StatProps) => {
   return (
-    <div className="container">
+    <div className="stat">
       <h2 className="detail">{title}:</h2>
       <p className="detail">{value}</p>
     </div>
@@ -26,8 +26,10 @@ const GameStats = ({ moves, timer, hasWon }: GameStatsProps) => {
       {hasWon && (
         <div className="win-message">Congratulations! You've won!</div>
       )}
-      <Stat title="Moves" value={moves} />
-      <Stat title="Timer" value={timer} />
+      <div className="stats-container">
+        <Stat title="Moves" value={moves} />
+        <Stat title="Timer" value={timer} />
+      </div>
     </div>
   );
 };

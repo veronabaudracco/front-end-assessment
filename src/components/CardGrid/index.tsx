@@ -1,5 +1,5 @@
 import { useCallback, useEffect } from "react";
-import Card, { MemoryCard } from "../Card";
+import Card, { MemoryCard } from "../card";
 import "./CardGrid.css";
 
 const flipCard = (cards: MemoryCard[], id: number, flippedState: boolean) => {

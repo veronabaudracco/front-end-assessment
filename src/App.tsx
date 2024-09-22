@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import "./App.css";
-import { MemoryCard } from "./components/Card";
-import GameBoard from "./components/GameBoard";
-import Header from "./components/Header";
+import { MemoryCard } from "./components/card";
+import GameBoard from "./components/gameBoard";
+import Header from "./components/header";
 import getCardsData from "./utils";
 
 const App = () => {
