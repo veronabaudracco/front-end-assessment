@@ -1,11 +1,20 @@
-import './header.css';
+import "./header.css";
 
-const Header = () => {
+interface HeaderProps {
+  onReset?: () => void;
+}
+
+const Header = ({ onReset }: HeaderProps) => {
   return (
     <header className="header">
       <div className="logo">
-        <h1>MyApp</h1>
+        <h1>Match of Thrones</h1>
       </div>
+      {onReset ? (
+        <button className="reset-button" onClick={onReset}>
+          Reset Game
+        </button>
+      ) : null}
     </header>
   );
 };
