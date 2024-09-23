@@ -1,6 +1,6 @@
 # 🎴 Match of Thrones - Memory Card Game
 
-This is a **Memory Card Game** based on _Game of Thrones_ characters, built using **React**. The goal of the game is to match pairs of cards by flipping them. It features a timer, move counter, difficulty levels, and a reset button to restart the game. Try to complete the game with the fewest moves and the fastest time!
+This is a **Memory Card Game** based on _Game of Thrones_ characters, built using **React**. The goal of the game is to match pairs of cards by flipping them. It features a timer, move counter, and a reset button to restart the game. Try to complete the game with the fewest moves and the fastest time!
 
 ## Features
 
@@ -39,7 +39,6 @@ The game will be accessible at http://localhost:3000.
 
 ### How to Play
 
-- Choose your difficulty level (easy or medium).
 - Click on a card to flip it.
 - Try to find its matching pair.
 - Once all pairs are matched, you win the game! 🎉
