@@ -23,7 +23,7 @@ const App = () => {
   }, []);
 
   useEffect(() => {
-    let interval: number;
+    let interval: NodeJS.Timeout;
 
     // Start the timer if the game has started
     if (hasStarted) {

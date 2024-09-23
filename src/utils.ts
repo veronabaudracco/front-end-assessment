@@ -1,63 +1,13 @@
-import arya from "./assets/arya.png";
-import cersei from "./assets/cersei.png";
-import daenerys from "./assets/daenerys.png";
-import jaime from "./assets/jaime.png";
-import jon from "./assets/jon.png";
-import sansa from "./assets/sansa.png";
-import tyrion from "./assets/tyrion.png";
-import walker from "./assets/walker.png";
 import { MemoryCard } from "./components/card";
 import { SetCards } from "./components/cardGrid";
-
-export interface Image {
-  src: string;
-  alt: string;
-}
-
-export const images: Image[] = [
-  {
-    src: arya,
-    alt: "Arya Stark",
-  },
-  {
-    src: cersei,
-    alt: "Cersei Lannister",
-  },
-  {
-    src: daenerys,
-    alt: "Daenerys Targaryen",
-  },
-
-  {
-    src: jaime,
-    alt: "Jaime Lannister",
-  },
-  {
-    src: jon,
-    alt: "Jon Snow",
-  },
-  {
-    src: sansa,
-    alt: "Sansa Stark",
-  },
-
-  {
-    src: tyrion,
-    alt: "Tyrion Lannister",
-  },
-
-  {
-    src: walker,
-    alt: "White Walker",
-  },
-];
+import { images } from "./constants";
 
 /**
- * Shuffle the array of cards.
- * @param array {MemoryCard[]} - Array of MemoryCard objects
- * @returns {MemoryCard[]} - Shuffled array of MemoryCard objects
+ * Shuffle an array of any type.
+ * @param array {T[]}
+ * @returns {T[]}
  */
-const shuffle = (array: MemoryCard[]) => {
+const shuffle = <T>(array: T[]): T[] => {
   for (let i = array.length - 1; i > 0; i--) {
     const j = Math.floor(Math.random() * (i + 1));
     [array[i], array[j]] = [array[j], array[i]];
