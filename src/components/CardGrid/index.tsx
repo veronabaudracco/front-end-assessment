@@ -1,7 +1,7 @@
 import { useCallback, useEffect } from "react";
 import Card, { MemoryCard } from "../card";
 import "./CardGrid.css";
-import { flipCard, getFlippedCards, resetNonMatchingCards } from "../../utils";
+import { flipCard, getFlippedCards, matchCards } from "../../utils";
 
 export type SetCards = React.Dispatch<React.SetStateAction<MemoryCard[]>>;
 export type SetMoves = React.Dispatch<React.SetStateAction<number>>;
@@ -47,14 +47,15 @@ const CardGrid = ({
 
           if (isMatch) {
             // If the cards match, update the cards to be matched
-            return updatedCards.map((card) =>
-              card.id === firstCard.id || card.id === secondCard.id
-                ? { ...card, matched: true }
-                : card
-            );
+            return matchCards(updatedCards, firstCard.id, secondCard.id);
           } else {
             // If the cards don't match, reset the cards to their original state
-            resetNonMatchingCards(firstCard, secondCard, setCards);
+            setTimeout(() => {
+              setCards((prevCards) => {
+                const updatedCards = flipCard(prevCards, firstCard.id, false);
+                return flipCard(updatedCards, secondCard.id, false);
+              });
+            }, 800);
           }
         }
 

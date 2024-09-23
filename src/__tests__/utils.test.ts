@@ -2,7 +2,7 @@ import {
   flipCard,
   getCardsData,
   getFlippedCards,
-  resetNonMatchingCards,
+  matchCards,
   shuffle,
 } from "../utils";
 import { images } from "../constants";
@@ -298,127 +298,38 @@ describe("getFlippedCards", () => {
   });
 });
 
-jest.useFakeTimers();
+describe("matchCards", () => {
+  it("should mark both cards as matched", () => {
+    const cards = [
+      { id: 1, image: images[1], matched: false, flipped: true },
+      { id: 2, image: images[2], matched: false, flipped: true },
+      { id: 3, image: images[3], matched: false, flipped: false },
+    ];
+    const firstCardId = cards[0].id;
+    const secondCardId = cards[1].id;
 
-describe("resetNonMatchingCards", () => {
-  it("should reset non-matching cards to their original state", () => {
-    const firstCard = {
-      id: 1,
-      image: images[0],
-      matched: false,
-      flipped: true,
-    };
-    const secondCard = {
-      id: 2,
-      image: images[1],
-      matched: false,
-      flipped: true,
-    };
+    const updatedCards = matchCards(cards, firstCardId, secondCardId);
 
-    const setCards = jest.fn((updateFn) => {
-      const prevCards = [
-        {
-          id: 1,
-          image: images[0],
-          matched: false,
-          flipped: true,
-        },
-        {
-          id: 2,
-          image: images[1],
-          matched: false,
-          flipped: true,
-        },
-        {
-          id: 3,
-          image: images[2],
-          matched: false,
-          flipped: false,
-        },
-      ];
-      return updateFn(prevCards); // Ensure it returns the updated array
-    });
-
-    resetNonMatchingCards(firstCard, secondCard, setCards);
-
-    jest.advanceTimersByTime(800);
-
-    expect(setCards).toHaveBeenCalledTimes(1);
-
-    const updatedCards = setCards.mock.calls[0][0](undefined); // Get the updated cards from the mock function
     expect(updatedCards).toEqual([
-      {
-        id: 1,
-        image: images[0],
-        matched: false,
-        flipped: false,
-      },
-      {
-        id: 2,
-        image: images[1],
-        matched: false,
-        flipped: false,
-      },
-      {
-        id: 3,
-        image: images[2],
-        matched: false,
-        flipped: false,
-      },
+      { id: 1, image: images[1], matched: true, flipped: true },
+      { id: 2, image: images[2], matched: true, flipped: true },
+      { id: 3, image: images[3], matched: false, flipped: false },
     ]);
   });
 
-  it("should not modify cards if both cards are already non-flipped", () => {
-    const firstCard = {
-      id: 1,
-      image: images[0],
-      matched: false,
-      flipped: false,
-    };
-    const secondCard = {
-      id: 2,
-      image: images[1],
-      matched: false,
-      flipped: false,
-    };
+  it("should not modify cards if the same card is matched twice", () => {
+    const cards = [
+      { id: 1, image: images[1], matched: false, flipped: true },
+      { id: 2, image: images[2], matched: false, flipped: false },
+    ];
+    const firstCardId = cards[0].id;
+    const secondCardId = cards[0].id; // Same card
 
-    const setCards = jest.fn((updateFn) => {
-      const prevCards = [
-        {
-          id: 1,
-          image: images[0],
-          matched: false,
-          flipped: false,
-        },
-        {
-          id: 2,
-          image: images[1],
-          matched: false,
-          flipped: false,
-        },
-      ];
-      return updateFn(prevCards); // Ensure it returns the updated array
-    });
+    const updatedCards = matchCards(cards, firstCardId, secondCardId);
 
-    resetNonMatchingCards(firstCard, secondCard, setCards);
-
-    jest.advanceTimersByTime(800);
-
-    expect(setCards).toHaveBeenCalledTimes(1);
-    const updatedCards = setCards.mock.calls[0][0](undefined); // Get the updated cards from the mock function
     expect(updatedCards).toEqual([
-      {
-        id: 1,
-        image: images[0],
-        matched: false,
-        flipped: false,
-      },
-      {
-        id: 2,
-        image: images[1],
-        matched: false,
-        flipped: false,
-      },
-    ]); // Expect no changes
+      { id: 1, image: images[1], matched: true, flipped: true },
+      { id: 2, image: images[2], matched: false, flipped: false },
+    ]);
   });
 });

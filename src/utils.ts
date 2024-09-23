@@ -1,5 +1,4 @@
 import { MemoryCard } from "./components/card";
-import { SetCards } from "./components/cardGrid";
 import { images } from "./constants";
 
 /**
@@ -63,28 +62,21 @@ const getFlippedCards = (cards: MemoryCard[]) => {
 };
 
 /**
- * Resets the non-matching cards to their original state.
- * @param firstCard
- * @param secondCard
- * @param setCards
+ * Marks two cards as matched based on their IDs.
+ * @param cards - The array of MemoryCard objects
+ * @param firstCard - The first card to mark as matched
+ * @param secondCard - The second card to mark as matched
+ * @returns MemoryCard[] - The updated array of MemoryCard objects
  */
-const resetNonMatchingCards = (
-  firstCard: MemoryCard,
-  secondCard: MemoryCard,
-  setCards: SetCards
-) => {
-  setTimeout(() => {
-    setCards((prevCards) => {
-      const updatedCards = flipCard(prevCards, firstCard.id, false);
-      return flipCard(updatedCards, secondCard.id, false);
-    });
-  }, 800);
+const matchCards = (
+  cards: MemoryCard[],
+  firstCardId: MemoryCard["id"],
+  secondCardId: MemoryCard["id"]
+): MemoryCard[] => {
+  return cards.map((card) =>
+    card.id === firstCardId || card.id === secondCardId
+      ? { ...card, matched: true }
+      : card
+  );
 };
-
-export {
-  getCardsData,
-  flipCard,
-  getFlippedCards,
-  resetNonMatchingCards,
-  shuffle,
-};
+export { getCardsData, flipCard, getFlippedCards, matchCards, shuffle };

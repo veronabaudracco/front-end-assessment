@@ -9,4 +9,10 @@ export default {
   moduleNameMapper: {
     "\\.(jpg|jpeg|png|gif|svg)$": "<rootDir>/__mocks__/fileMock.ts",
   },
+  collectCoverage: true,
+  collectCoverageFrom: [
+    "src/**/*.{js,jsx,ts,tsx}",
+    "!src/**/*.test.{js,jsx,ts,tsx}",
+  ],
+  coverageDirectory: "coverage",
 };
