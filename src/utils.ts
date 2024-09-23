@@ -1,4 +1,4 @@
-import { MemoryCard } from "./components/card";
+import { MemoryCard } from "./components/Card";
 import { images } from "./constants";
 
 /**

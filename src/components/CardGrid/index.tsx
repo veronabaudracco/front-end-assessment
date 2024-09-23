@@ -1,5 +1,5 @@
 import { useCallback, useEffect } from "react";
-import Card, { MemoryCard } from "../card";
+import Card, { MemoryCard } from "../Card";
 import "./CardGrid.css";
 import { flipCard, getFlippedCards, matchCards } from "../../utils";
 

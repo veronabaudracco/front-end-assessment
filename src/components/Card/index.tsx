@@ -1,6 +1,6 @@
 import "./Card.css";
 import got from "../../assets/got.png";
-import { Image } from "../../utils";
+import { Image } from "../../constants";
 
 export interface MemoryCard {
   id: number;

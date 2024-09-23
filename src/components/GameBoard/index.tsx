@@ -1,8 +1,8 @@
 import Confetti from "react-confetti";
-import CardGrid, { SetCards, SetMoves } from "../cardGrid";
+import CardGrid, { SetCards, SetMoves } from "../CardGrid";
 import { useEffect, useState } from "react";
 import { MemoryCard } from "../Card";
-import GameStats from "../gameStats";
+import GameStats from "../GameStats";
 
 interface GameBoardProps {
   cards: MemoryCard[];
